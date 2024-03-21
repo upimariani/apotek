@@ -1,7 +1,7 @@
 <main class="h-full pb-16 overflow-y-auto">
 	<div class="container grid px-6 mx-auto">
 		<h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-			User
+			Kategori
 		</h2>
 		<!-- CTA -->
 		<a class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple">
@@ -10,7 +10,7 @@
 					<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
 				</svg>
 				<button @click="openModal" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-					Tambah Data User
+					Tambah Data Kategori
 				</button>
 			</div>
 			<span> &RightArrow;</span>
@@ -18,17 +18,14 @@
 
 		<!-- With actions -->
 		<h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
-			Informasi User
+			Informasi Kategori Obat
 		</h4>
 		<div class="w-full overflow-hidden rounded-lg shadow-xs">
 			<div class="w-full overflow-x-auto">
 				<table class="w-full whitespace-no-wrap">
 					<thead>
 						<tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-							<th class="px-4 py-3">Nama Pengguna</th>
-							<th class="px-4 py-3">Username</th>
-							<th class="px-4 py-3">Password</th>
-							<th class="px-4 py-3">Level Pengguna</th>
+							<th class="px-4 py-3">Nama Kategori</th>
 							<th class="px-4 py-3">Actions</th>
 						</tr>
 					</thead>
@@ -49,17 +46,7 @@
 									</div>
 								</div>
 							</td>
-							<td class="px-4 py-3 text-sm">
-								$ 863.45
-							</td>
-							<td class="px-4 py-3 text-xs">
-								<span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-									Approved
-								</span>
-							</td>
-							<td class="px-4 py-3 text-sm">
-								6/10/2020
-							</td>
+
 							<td class="px-4 py-3">
 								<div class="flex items-center space-x-4 text-sm">
 									<button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Edit">
@@ -89,7 +76,7 @@
 
 	<div x-show="isModalOpen" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 transform translate-y-1/2" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0  transform translate-y-1/2" @click.away="closeModal" @keydown.escape="closeModal" class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl" role="dialog" id="modal">
 		<!-- Remove header if you don't want a close icon. Use modal body to place modal tile. -->
-		<form action="<?= base_url('Admin/cUser/create') ?>" method="POST">
+		<form action="<?= base_url('Admin/cKategori/create') ?>" method="POST">
 			<header class="flex justify-end">
 				<button class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700" aria-label="close" @click="closeModal">
 					<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" role="img" aria-hidden="true">
@@ -101,45 +88,20 @@
 			<div class="mt-4 mb-6">
 				<!-- Modal title -->
 				<p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
-					Masukkan Data User
+					Masukkan Data Kategori Obat
 				</p>
 				<!-- Modal description -->
 				<div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
 					<!-- Helper text -->
 					<label class="block mt-4 text-sm">
 						<span class="text-gray-700 dark:text-gray-400">
-							Nama Pengguna
+							Nama Kategori
 						</span>
 						<input name="nama" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input" placeholder="Masukkan Nama Pengguna" required />
 
 					</label>
 
-					<!-- Helper text -->
-					<label class="block mt-4 text-sm">
-						<span class="text-gray-700 dark:text-gray-400">
-							Username
-						</span>
-						<input name="username" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input" placeholder="Masukkan Username" required />
 
-					</label>
-					<!-- Helper text -->
-					<label class="block mt-4 text-sm">
-						<span class="text-gray-700 dark:text-gray-400">
-							Password
-						</span>
-						<input name="password" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input" placeholder="Masukkan Password" required />
-
-					</label>
-					<label class="block mt-4 text-sm">
-						<span class="text-gray-700 dark:text-gray-400">
-							Level Pengguna
-						</span>
-						<select name="level" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-							<option value="">---Pilih Level Pengguna---</option>
-							<option value="1">Admin</option>
-							<option value="2">Owner</option>
-						</select>
-					</label>
 				</div>
 			</div>
 			<footer class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
