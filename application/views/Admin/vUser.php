@@ -12,6 +12,7 @@
 				<button @click="openModal" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
 					Tambah Data User
 				</button>
+
 			</div>
 			<span> &RightArrow;</span>
 		</a>
@@ -20,6 +21,23 @@
 		<h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
 			Informasi User
 		</h4>
+		<?php
+		if ($this->session->userdata('success') != '') {
+		?>
+			<div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+				<div class="flex">
+					<div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+							<path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" />
+						</svg></div>
+					<div>
+						<p class="font-bold">Sukses!</p>
+						<p class="text-sm"><?= $this->session->userdata('success') ?></p>
+					</div>
+				</div>
+			</div>
+		<?php
+		}
+		?>
 		<div class="w-full overflow-hidden rounded-lg shadow-xs">
 			<div class="w-full overflow-x-auto">
 				<table class="w-full whitespace-no-wrap">
@@ -33,48 +51,60 @@
 						</tr>
 					</thead>
 					<tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-						<tr class="text-gray-700 dark:text-gray-400">
-							<td class="px-4 py-3">
-								<div class="flex items-center text-sm">
-									<!-- Avatar with inset shadow -->
-									<div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-										<img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
-										<div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+						<?php
+						foreach ($user as $key => $value) {
+						?>
+							<tr class="text-gray-700 dark:text-gray-400">
+								<td class="px-4 py-3">
+									<div class="flex items-center text-sm">
+										<!-- Avatar with inset shadow -->
+
+										<div>
+											<p class="font-semibold"><?= $value->nama_pengguna ?></p>
+											<p class="text-xs text-gray-600 dark:text-gray-400">
+												Apotek Agra Medika
+											</p>
+										</div>
 									</div>
-									<div>
-										<p class="font-semibold">Hans Burger</p>
-										<p class="text-xs text-gray-600 dark:text-gray-400">
-											10x Developer
-										</p>
+								</td>
+								<td class="px-4 py-3 text-xs">
+									<span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
+										<?= $value->username ?>
+									</span>
+								</td>
+								<td class="px-4 py-3 text-xs">
+									<span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+										<?= $value->password ?>
+									</span>
+								</td>
+								<td class="px-4 py-3 text-sm">
+									<?php
+									if ($value->level_pengguna == '1') {
+										echo 'Admin';
+									} else {
+										echo 'Owner';
+									}
+									?>
+								</td>
+								<td class="px-4 py-3">
+									<div class="flex items-center space-x-4 text-sm">
+										<a href="<?= base_url('Admin/cUser/updateUser/' . $value->id_pengguna) ?>" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Edit">
+											<svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+												<path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+											</svg>
+										</a>
+										<a href="<?= base_url('Admin/cUser/delete/' . $value->id_pengguna) ?>" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
+											<svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+												<path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+											</svg>
+										</a>
 									</div>
-								</div>
-							</td>
-							<td class="px-4 py-3 text-sm">
-								$ 863.45
-							</td>
-							<td class="px-4 py-3 text-xs">
-								<span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-									Approved
-								</span>
-							</td>
-							<td class="px-4 py-3 text-sm">
-								6/10/2020
-							</td>
-							<td class="px-4 py-3">
-								<div class="flex items-center space-x-4 text-sm">
-									<button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Edit">
-										<svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-											<path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
-										</svg>
-									</button>
-									<button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
-										<svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-											<path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-										</svg>
-									</button>
-								</div>
-							</td>
-						</tr>
+								</td>
+							</tr>
+						<?php
+						}
+						?>
+
 
 					</tbody>
 				</table>
@@ -134,7 +164,7 @@
 						<span class="text-gray-700 dark:text-gray-400">
 							Level Pengguna
 						</span>
-						<select name="level" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+						<select name="level" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" required>
 							<option value="">---Pilih Level Pengguna---</option>
 							<option value="1">Admin</option>
 							<option value="2">Owner</option>
