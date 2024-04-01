@@ -86,6 +86,7 @@
 <script src="<?= base_url('asset/malefashion-master/') ?>js/mixitup.min.js"></script>
 <script src="<?= base_url('asset/malefashion-master/') ?>js/owl.carousel.min.js"></script>
 <script src="<?= base_url('asset/malefashion-master/') ?>js/main.js"></script>
+
 </body>
 
 </html>
