@@ -71,7 +71,7 @@
 							<li class="active"><a href="<?= base_url('Pelanggan/cKatalog') ?>">Home</a></li>
 							<li><a href="<?= base_url('Pelanggan/cPesananSaya') ?>">Pesanan Saya</a></li>
 
-							<li><a href="<?= base_url('Pelanggan/cChatting') ?>">Customer Service</a></li>
+							<li><a href="<?= base_url('Pelanggan/cChat') ?>">Customer Service</a></li>
 						</ul>
 					</nav>
 				</div>
