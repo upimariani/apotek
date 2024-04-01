@@ -23,6 +23,15 @@
 		<div class="row">
 
 			<div class="col-lg-12">
+				<?php
+				if ($this->session->userdata('success') != '') {
+				?>
+					<div class="alert alert-success" role="alert">
+						<?= $this->session->userdata('success') ?>
+					</div>
+				<?php
+				}
+				?>
 				<div class="card">
 					<div class="card-body">
 						<div class="invoice-title">
@@ -147,11 +156,33 @@
 
 									</tbody><!-- end tbody -->
 								</table><!-- end table -->
+								<?php
+								if ($detail['pelanggan']->stat_transaksi == '0') {
+								?>
+									<hr>
+									<?= form_open_multipart('Pelanggan/cPesananSaya/bayar/' . $detail['pelanggan']->id_transaksi) ?>
+									<label>Upload Bukti Pembayaran</label><br>
+									<small>Pembayaran dapat dilakukan melalui bank BRI Atas Nama <strong>Apotek Agra Medika</strong> dengan No Rekening. <strong>32098-0912-012978</strong></small>
+									<input type="file" name="gambar" class="form-control" required>
+									<button class="primary-btn mt-2" type="submit">Kirim</button>
+									</form>
+								<?php
+								}
+								?>
+
 							</div><!-- end table responsive -->
 							<div class="d-print-none mt-4">
 								<div class="float-end">
 									<a href="javascript:window.print()" class="btn btn-success me-1"><i class="fa fa-print"></i></a>
 									<a href="<?= base_url('Pelanggan/cPesananSaya') ?>" class="btn btn-danger w-md">Kembali</a>
+									<?php
+									if ($detail['pelanggan']->stat_transaksi == '3') {
+									?>
+										<a href="<?= base_url('Pelanggan/cPesananSaya/diterima/' . $detail['pelanggan']->id_transaksi) ?>" class="btn btn-warning w-md">Pesanan Diterima</a>
+
+									<?php
+									}
+									?>
 								</div>
 							</div>
 						</div>
