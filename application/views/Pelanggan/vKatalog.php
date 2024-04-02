@@ -84,7 +84,7 @@ if ($this->session->userdata('success') != '') {
 		<div class="row">
 			<div class="col-lg-3">
 				<div class="categories__text">
-					<h2>Clothings Hot <br /> <span>Shoe Collection</span> <br /> Accessories</h2>
+					<h2>Kesehatan <br /> <span>Apotek Agra Medika</span></h2>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -92,14 +92,14 @@ if ($this->session->userdata('success') != '') {
 					<img src="img/product-sale.png" alt="">
 					<div class="hot__deal__sticker">
 						<span>Sale Of</span>
-						<h5>$29.99</h5>
+						<h5>15%</h5>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-4 offset-lg-1">
 				<div class="categories__deal__countdown">
 					<span>Deal Of The Week</span>
-					<h2>Multi-pocket Chest Bag Black</h2>
+					<h2>Discounts Member Gold</h2>
 					<div class="categories__deal__countdown__timer" id="countdown">
 						<div class="cd-item">
 							<span>3</span>

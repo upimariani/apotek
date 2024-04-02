@@ -132,18 +132,23 @@
 												<td class="text-end">Rp. <?= number_format($value->total_transaksi) ?></td>
 											</tr>
 											<!-- end tr -->
-											<tr>
-												<th scope="row" colspan="4" class="border-0 text-end">
-													Discount :</th>
-												<td class="border-0 text-end">0</td>
-											</tr>
+
 											<!-- end tr -->
 											<tr>
 												<th scope="row" colspan="4" class="border-0 text-end">
 													Ongkos Kirim :</th>
 												<td class="border-0 text-end">Rp. <?= number_format($value->ongkir) ?></td>
 											</tr>
-
+											<tr>
+												<th scope="row" colspan="4" class="border-0 text-end">
+													Discount :</th>
+												<td class="border-0 text-end">
+													<?php
+													$diskon = $value->total_pembayaran - ($value->total_transaksi + $value->ongkir);
+													echo 'Rp. ' . number_format($diskon);
+													?>
+												</td>
+											</tr>
 											<tr>
 												<th scope="row" colspan="4" class="border-0 text-end">Total</th>
 												<td class="border-0 text-end">

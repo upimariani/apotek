@@ -58,13 +58,38 @@
 				<div class="row">
 					<div class="col-lg-6 col-md-7">
 						<div class="header__top__left">
-							<p>Selamat Datang Pelanggan...</p>
+							<?php
+							$dt_pelanggan = $this->db->query("SELECT * FROM `pelanggan` WHERE id_pelanggan='" . $this->session->userdata('id_pelanggan') . "'")->row();
+							?>
+							<p>Selamat Datang <strong><?= $dt_pelanggan->nama_pelanggan ?></strong> Level Member <strong>
+									<?php
+									if ($dt_pelanggan->level_member == '3') {
+										echo 'Clasic';
+									} else if ($dt_pelanggan->level_member == '2') {
+										echo 'Silver';
+									} else {
+										echo 'Gold';
+									}
+									?>
+								</strong>...</p>
+							<p>Point anda sebanyak <strong><?= $dt_pelanggan->point ?></strong></p>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-5">
 						<div class="header__top__right">
 							<div class="header__top__links">
-								<a href="#">Sign in</a>
+								<?php
+								if (!$this->session->userdata('id_pelanggan')) {
+								?><a href="<?= base_url('Pelanggan/cLogin') ?>">Sign in</a>
+
+								<?php
+								} else {
+								?>
+									<a href="<?= base_url('Pelanggan/cLogin/logout') ?>">Logout</a>
+								<?php
+								}
+								?>
+
 							</div>
 
 						</div>
@@ -85,21 +110,32 @@
 							<li class="active"><a href="<?= base_url('Pelanggan/cKatalog') ?>">Home</a></li>
 							<li><a href="<?= base_url('Pelanggan/cPesananSaya') ?>">Pesanan Saya</a></li>
 
-							<li><a href="<?= base_url('Pelanggan/cChatting') ?>">Customer Service</a></li>
+							<li><a href="<?= base_url('Pelanggan/cChat') ?>">Customer Service</a></li>
 						</ul>
 					</nav>
 				</div>
 				<div class="col-lg-3 col-md-3">
-					<div class="header__nav__option">
-						<?php
-						$qty = 0;
-						foreach ($this->cart->contents() as $key => $value) {
-							$qty += $value['qty'];
-						}
-						?>
-						<a href="<?= base_url('Pelanggan/cKatalog/cart') ?>"><img src="<?= base_url('asset/malefashion-master/') ?>img/icon/cart.png" alt=""> <span><?= $qty ?></span></a>
-						<div class="price">Rp. <?= number_format($this->cart->total())  ?></div>
-					</div>
+					<?php
+					$qty = 0;
+					foreach ($this->cart->contents() as $key => $value) {
+						$qty += $value['qty'];
+					}
+					if ($qty != 0) {
+					?>
+						<div class="header__nav__option">
+							<?php
+							$qty = 0;
+							foreach ($this->cart->contents() as $key => $value) {
+								$qty += $value['qty'];
+							}
+							?>
+							<a href="<?= base_url('Pelanggan/cKatalog/cart') ?>"><img src="<?= base_url('asset/malefashion-master/') ?>img/icon/cart.png" alt=""> <span><?= $qty ?></span></a>
+							<div class="price">Rp. <?= number_format($this->cart->total())  ?></div>
+						</div>
+					<?php
+					}
+					?>
+
 				</div>
 			</div>
 			<div class="canvas__open"><i class="fa fa-bars"></i></div>
@@ -132,8 +168,37 @@
 				<form action="<?= base_url('Pelanggan/cCheckout/order') ?>" method="POST">
 					<div class="row">
 						<div class="col-lg-8 col-md-6">
-							<h6 class="coupon__code"><span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click
-									here</a> to enter your code</h6>
+
+							<?php
+							if ($dt_pelanggan->level_member == '2') {
+							?>
+								<h6 class="coupon__code"><span class="icon_tag_alt"></span> Hallo <?= $dt_pelanggan->nama_pelanggan ?>, anda sebagai level member <strong>
+										<?php
+										if ($dt_pelanggan->level_member == '3') {
+											echo 'Clasic';
+										} else if ($dt_pelanggan->level_member == '2') {
+											echo 'Silver';
+										} else {
+											echo 'Gold';
+										}
+										?>
+									</strong>! Anda memiliki potongan jumlah transaksi sebesar <strong>
+										<?php
+										if ($dt_pelanggan->level_member == '2') {
+											echo '10%';
+										} else {
+											echo '15%';
+										}
+										?>
+									</strong></h6>
+							<?php
+							} else if ($dt_pelanggan->level_member == '1') {
+							?>
+								<h6 class="coupon__code"><span class="icon_tag_alt"></span> Have a coupon? to enter your code</h6>
+							<?php
+							}
+							?>
+
 							<h6 class="checkout__title">Billing Details</h6>
 							<div class="row">
 								<div class="col-lg-6">
@@ -209,19 +274,20 @@
 								<ul class="checkout__total__all">
 									<li>Subtotal <span>Rp. <?= number_format($this->cart->total()) ?></span></li>
 									<li>Ongkir <span id="ongkir"></span></li>
+									<li>Discount (-) <span id="diskon"></span></li>
 									<li>Total <span id="total_bayar"></span></li>
 								</ul>
-
-								<p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
-									ut labore et dolore magna aliqua.</p>
 
 								<button type="submit" class="site-btn">PLACE ORDER</button>
 							</div>
 						</div>
 					</div>
-					<input type="text" name="estimasi">
-					<input type="text" name="ongkir">
-					<input type="text" name="total_bayar">
+					<input type="hidden" id="level_member" name="level" value="<?= $dt_pelanggan->level_member ?>">
+					<input type="hidden" name="estimasi">
+					<input type="hidden" name="ongkir">
+					<input type="hidden" name="total_bayar">
+					<input type="hidden" name="tot_diskon">
+					<input type="hidden" name="diskon">
 
 				</form>
 			</div>
@@ -305,14 +371,25 @@
 				var total_bayar = parseInt(ongkir) + parseInt(<?= $this->cart->total() ?>);
 
 				// //pelanggan istimewa
-				// var istimewa = parseInt(total_bayar) - 50000;
+				var level = $("#level_member").val();
+				if (level == '2') {
+					var disc = 10 / 100 * parseInt(total_bayar);
+					var tot_disc = parseInt(total_bayar) - (10 / 100 * parseInt(total_bayar));
+				} else if (level == '1') {
+					var disc = 15 / 100 * parseInt(total_bayar);
+					var tot_disc = parseInt(total_bayar) - (15 / 100 * parseInt(total_bayar));
+				} else {
+					var disc = 0;
+					var tot_disc = total_bayar;
+				}
 
-				// var reverse3 = istimewa.toString().split('').reverse().join(''),
-				// 	ribuan_istimewa = reverse3.match(/\d{1,3}/g);
-				// ribuan_istimewa = ribuan_istimewa.join(',').split('').reverse().join('');
-				// $("#pelanggan_istimewa").html("Rp. " + ribuan_istimewa);
 
-				var reverse2 = total_bayar.toString().split('').reverse().join(''),
+				var diskon = disc.toString().split('').reverse().join(''),
+					ribuan_totdiskon = diskon.match(/\d{1,3}/g);
+				ribuan_totdiskon = ribuan_totdiskon.join(',').split('').reverse().join('');
+				$("#diskon").html("Rp. " + ribuan_totdiskon);
+
+				var reverse2 = tot_disc.toString().split('').reverse().join(''),
 					ribuan_total = reverse2.match(/\d{1,3}/g);
 				ribuan_total = ribuan_total.join(',').split('').reverse().join('');
 				$("#total_bayar").html("Rp. " + ribuan_total);
@@ -321,8 +398,9 @@
 				var estimasi = $("option:selected", this).attr('estimasi');
 				$("input[name=estimasi]").val(estimasi);
 				$("input[name=ongkir]").val(dataongkir);
-				$("input[name=total_bayar]").val(total_bayar);
-				// $("input[name=istimewa]").val(istimewa);
+				$("input[name=total_bayar]").val(tot_disc);
+				$("input[name=tot_diskon]").val(tot_disc);
+				$("input[name=diskon]").val(disc);
 			});
 
 		});

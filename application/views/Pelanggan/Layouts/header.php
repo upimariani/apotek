@@ -33,7 +33,21 @@
 				<div class="row">
 					<div class="col-lg-6 col-md-7">
 						<div class="header__top__left">
-							<p>Selamat Datang Pelanggan...</p>
+							<?php
+							$dt_pelanggan = $this->db->query("SELECT * FROM `pelanggan` WHERE id_pelanggan='" . $this->session->userdata('id_pelanggan') . "'")->row();
+							?>
+							<p>Selamat Datang <strong><?= $dt_pelanggan->nama_pelanggan ?></strong> Level Member <strong>
+									<?php
+									if ($dt_pelanggan->level_member == '3') {
+										echo 'Clasic';
+									} else if ($dt_pelanggan->level_member == '2') {
+										echo 'Silver';
+									} else {
+										echo 'Gold';
+									}
+									?>
+								</strong>...</p>
+							<p>Point anda sebanyak <strong><?= $dt_pelanggan->point ?></strong></p>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-5">

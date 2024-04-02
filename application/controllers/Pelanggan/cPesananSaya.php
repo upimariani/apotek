@@ -61,6 +61,34 @@ class cPesananSaya extends CI_Controller
 	}
 	public function diterima($id_transaksi)
 	{
+		//menambahkan point pelanggan
+		$dt_pelanggan = $this->db->query("SELECT * FROM `pelanggan` WHERE id_pelanggan='" . $this->session->userdata('id_pelanggan') . "'")->row();
+		$dt_point = $this->db->query("SELECT * FROM `transaksi_obat` WHERE id_transaksi='" . $id_transaksi . "'")->row();
+		$point = $dt_point->point_transaksi + $dt_pelanggan->point;
+
+		//level member
+		//clasic, silver, gold
+		//clasic != 
+		//silver 10%
+		//gold 15%
+		if ($point <= 1000) {
+			$lev_member = '3';
+		} else if (1000 < $point && $point <= 10000) {
+			$lev_member = '2';
+		} else if ($point > 10000) {
+			$lev_member = '1';
+		}
+
+
+		$update_point = array(
+			'point' => $point,
+			'level_member' => $lev_member
+		);
+		$this->db->where('id_pelanggan', $dt_pelanggan->id_pelanggan);
+		$this->db->update('pelanggan', $update_point);
+
+
+
 		$data = array(
 			'stat_transaksi' => '4'
 		);

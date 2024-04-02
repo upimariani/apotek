@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Login - Windmill Dashboard</title>
+	<title>Login User - APOTEK AGRA MEDIKA </title>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="<?= base_url('asset/windmill-dashboard/public/') ?>assets/css/tailwind.output.css" />
 	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
@@ -59,7 +59,7 @@
 							?>
 
 
-							<h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+							<h1 class="mb-4 mt-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
 								Login
 							</h1>
 
