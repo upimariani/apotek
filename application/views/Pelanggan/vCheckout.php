@@ -203,14 +203,14 @@
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="checkout__input">
-										<p>Fist Name<span>*</span></p>
-										<input type="text">
+										<p>Nama<span>*</span></p>
+										<input value="<?= $dt_pelanggan->nama_pelanggan ?>" type="text" readonly>
 									</div>
 								</div>
 								<div class="col-lg-6">
 									<div class="checkout__input">
-										<p>Last Name<span>*</span></p>
-										<input type="text">
+										<p>Alamat<span>*</span></p>
+										<input value="<?= $dt_pelanggan->alamat ?>" type="text" readonly>
 									</div>
 								</div>
 							</div>

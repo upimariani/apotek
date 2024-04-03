@@ -127,37 +127,38 @@
 												<td><?= $value->qty ?></td>
 												<td class="text-end">Rp. <?= number_format($value->harga * $value->qty) ?></td>
 											</tr>
-											<tr>
-												<th scope="row" colspan="4" class="text-end">Sub Total</th>
-												<td class="text-end">Rp. <?= number_format($value->total_transaksi) ?></td>
-											</tr>
-											<!-- end tr -->
-
-											<!-- end tr -->
-											<tr>
-												<th scope="row" colspan="4" class="border-0 text-end">
-													Ongkos Kirim :</th>
-												<td class="border-0 text-end">Rp. <?= number_format($value->ongkir) ?></td>
-											</tr>
-											<tr>
-												<th scope="row" colspan="4" class="border-0 text-end">
-													Discount :</th>
-												<td class="border-0 text-end">
-													<?php
-													$diskon = $value->total_pembayaran - ($value->total_transaksi + $value->ongkir);
-													echo 'Rp. ' . number_format($diskon);
-													?>
-												</td>
-											</tr>
-											<tr>
-												<th scope="row" colspan="4" class="border-0 text-end">Total</th>
-												<td class="border-0 text-end">
-													<h5 class="m-0 fw-semibold">Rp. <?= number_format($value->total_pembayaran) ?></h5>
-												</td>
-											</tr>
 										<?php
 										}
 										?>
+										<tr>
+											<th scope="row" colspan="4" class="text-end">Sub Total</th>
+											<td class="text-end">Rp. <?= number_format($value->total_transaksi) ?></td>
+										</tr>
+										<!-- end tr -->
+
+										<!-- end tr -->
+										<tr>
+											<th scope="row" colspan="4" class="border-0 text-end">
+												Ongkos Kirim :</th>
+											<td class="border-0 text-end">Rp. <?= number_format($value->ongkir) ?></td>
+										</tr>
+										<tr>
+											<th scope="row" colspan="4" class="border-0 text-end">
+												Discount :</th>
+											<td class="border-0 text-end">
+												<?php
+												$diskon = $value->total_pembayaran - ($value->total_transaksi + $value->ongkir);
+												echo 'Rp. ' . number_format($diskon);
+												?>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row" colspan="4" class="border-0 text-end">Total</th>
+											<td class="border-0 text-end">
+												<h5 class="m-0 fw-semibold">Rp. <?= number_format($value->total_pembayaran) ?></h5>
+											</td>
+										</tr>
+
 
 									</tbody><!-- end tbody -->
 								</table><!-- end table -->

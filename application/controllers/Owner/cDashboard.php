@@ -32,6 +32,7 @@ class cDashboard extends CI_Controller
 		$tahun = $this->input->post('tahun');
 
 		$pdf->SetFont('Times', 'B', 14);
+		$pdf->Cell(190, 10, 'APOTEK AGRA MEDIKA', 0, 1, 'C');
 		$pdf->Cell(190, 10, 'LAPORAN TRANSAKSI BULAN KE - ' . $bulan . ' TAHUN ' . $tahun, 0, 1, 'C');
 
 
