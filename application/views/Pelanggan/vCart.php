@@ -4,11 +4,11 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="breadcrumb__text">
-					<h4>Shopping Cart</h4>
+					<h4>Keranjang</h4>
 					<div class="breadcrumb__links">
-						<a href="./index.html">Home</a>
-						<a href="./shop.html">Shop</a>
-						<span>Shopping Cart</span>
+						<a href="#">Home</a>
+						<a href="#">Belanja</a>
+						<span>Keranjang</span>
 					</div>
 				</div>
 			</div>
@@ -34,8 +34,8 @@
 						<table>
 							<thead>
 								<tr>
-									<th>Product</th>
-									<th>Quantity</th>
+									<th>Produk</th>
+									<th>Jumlah</th>
 									<th>Total</th>
 									<th></th>
 								</tr>
@@ -76,12 +76,12 @@
 					<div class="row">
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<div class="continue__btn">
-								<a href="<?= base_url('Pelanggan/cKatalog') ?>">Continue Shopping</a>
+								<a href="<?= base_url('Pelanggan/cKatalog') ?>">Tetap Belanja</a>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<div class="continue__btn update__btn">
-								<button type="submit" class="primary-btn" href="#"><i class="fa fa-spinner"></i> Update cart</button>
+								<button type="submit" class="primary-btn" href="#"><i class="fa fa-spinner"></i> Perbaharui Keranjang</button>
 							</div>
 						</div>
 					</div>
@@ -89,12 +89,12 @@
 				<div class="col-lg-4">
 
 					<div class="cart__total">
-						<h6>Cart total</h6>
+						<h6>Total Keranjang</h6>
 						<ul>
 							<li>Subtotal <span>Rp. <?= number_format($this->cart->total()) ?></span></li>
 
 						</ul>
-						<a href="<?= base_url('Pelanggan/cCheckout') ?>" class="primary-btn">Proceed to checkout</a>
+						<a href="<?= base_url('Pelanggan/cCheckout') ?>" class="primary-btn">Pengiriman</a>
 					</div>
 					<?php echo form_close(); ?>
 				</div>

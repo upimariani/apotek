@@ -4,11 +4,11 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="breadcrumb__text">
-					<h4>Customer Service</h4>
+					<h4>Pesan</h4>
 					<div class="breadcrumb__links">
 						<a href="./index.html">Home</a>
 						<a href="./shop.html">Shop</a>
-						<span>Customer Service</span>
+						<span>Pesan</span>
 					</div>
 				</div>
 			</div>
@@ -79,11 +79,11 @@
 				<form action="<?= base_url('Pelanggan/cChat') ?>" method="POST">
 					<li class="bg-white mb-3">
 						<div class="form-outline">
-							<textarea class="form-control" name="pesan" id="textAreaExample2" rows="4" placeholder="Message..."></textarea>
+							<textarea class="form-control" name="pesan" id="textAreaExample2" rows="4" placeholder="Pesan..."></textarea>
 
 						</div>
 					</li>
-					<button type="submit" class="btn btn-info btn-rounded float-end">Send</button>
+					<button type="submit" class="btn btn-info btn-rounded float-end">Kirim</button>
 				</form>
 			</ul>
 

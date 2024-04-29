@@ -13,17 +13,31 @@ class cCheckout extends CI_Controller
 		//point transaksi
 		$total = $this->cart->total();
 		$perc = 0.5 / 100 * $total;
+
+		$switch_point = $this->input->post('point');
+		if ($switch_point == 'on') {
+			$sp_total = $this->input->post('total_bayar') - $this->input->post('jmlpoint');
+		} else {
+			$sp_total = $this->input->post('total_bayar');
+		}
 		$data = array(
 			'id_pelanggan' => $this->session->userdata('id_pelanggan'),
 			'tgl_transaksi' => date('Y-m-d'),
 			'total_transaksi' => $this->cart->total(),
 			'ongkir' => $this->input->post('ongkir'),
-			'total_pembayaran' => $this->input->post('total_bayar'),
+			'total_pembayaran' => $sp_total,
 			'bukti_pembayaran' => '0',
 			'alamat_pengiriman' => 'Kota ' . $this->input->post('kota') . ' Prov. ' . $this->input->post('provinsi') . 'Expedisi. ' . $this->input->post('expedisi') . $this->input->post('paket'),
 			'point_transaksi' => $perc
 		);
 		$this->db->insert('transaksi_obat', $data);
+
+		$dtu_point = array(
+			'point' => '0',
+			'level_member' => '3'
+		);
+		$this->db->where('id_pelanggan', $this->session->userdata('id_pelanggan'));
+		$this->db->update('pelanggan', $dtu_point);
 
 		//detail obat
 		$id = $this->db->query("SELECT MAX(id_transaksi) as id_transaksi FROM `transaksi_obat`")->row();

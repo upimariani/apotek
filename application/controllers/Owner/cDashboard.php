@@ -47,13 +47,18 @@ class cDashboard extends CI_Controller
 		$pdf->SetFont('Times', '', 9);
 		$no = 1;
 
-		$data = $this->db->query("SELECT * FROM `transaksi_obat` JOIN pelanggan ON transaksi_obat.id_pelanggan=pelanggan.id_pelanggan WHERE MONTH(tgl_transaksi) ='" . $bulan . "' AND YEAR(tgl_transaksi)='" . $tahun . "' AND stat_transaksi='4'")->result();
+		$data = $this->db->query("SELECT * FROM `transaksi_obat` LEFT JOIN pelanggan ON transaksi_obat.id_pelanggan=pelanggan.id_pelanggan WHERE MONTH(tgl_transaksi) ='" . $bulan . "' AND YEAR(tgl_transaksi)='" . $tahun . "' AND stat_transaksi='4'")->result();
 		$total = 0;
 		foreach ($data as $key => $value) {
+			if ($value->point_transaksi == '0') {
+				$pelanggan = 'Transaksi Langsung';
+			} else {
+				$pelanggan = $value->nama_pelanggan;
+			}
 			$total += $value->total_transaksi;
 			$pdf->Cell(10, 7, $no++, 1, 0, 'C');
 			$pdf->Cell(45, 7, $value->tgl_transaksi, 1, 0, 'L');
-			$pdf->Cell(55, 7, $value->nama_pelanggan, 1, 0, 'C');
+			$pdf->Cell(55, 7, $pelanggan, 1, 0, 'C');
 			$pdf->Cell(30, 7, $value->point_transaksi, 1, 0, 'C');
 			$pdf->Cell(40, 7, 'Rp.' . number_format($value->total_transaksi), 1, 1, 'C');
 		}

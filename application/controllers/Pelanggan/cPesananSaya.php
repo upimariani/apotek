@@ -98,6 +98,16 @@ class cPesananSaya extends CI_Controller
 		$this->session->set_flashdata('success', 'Pesanan Berhasil Diterima!');
 		redirect('Pelanggan/cPesananSaya/detail_pesanan/' . $id_transaksi);
 	}
+	public function review($id_transaksi)
+	{
+		$data = array(
+			'review' => $this->input->post('review')
+		);
+		$this->db->where('id_transaksi', $id_transaksi);
+		$this->db->update('transaksi_obat', $data);
+		$this->session->set_flashdata('success', 'Review Berhasil Dikirim!');
+		redirect('Pelanggan/cPesananSaya/detail_pesanan/' . $id_transaksi);
+	}
 }
 
 /* End of file c.php */

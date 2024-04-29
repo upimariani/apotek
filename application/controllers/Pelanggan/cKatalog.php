@@ -21,6 +21,16 @@ class cKatalog extends CI_Controller
 		$this->load->view('Pelanggan/vKatalog', $data);
 		$this->load->view('Pelanggan/Layouts/footer');
 	}
+	public function detail($id_obat)
+	{
+		$data = array(
+			'detail' => $this->mKatalog->detail_produk($id_obat)
+		);
+		$this->load->view('Pelanggan/Layouts/head');
+		$this->load->view('Pelanggan/Layouts/header');
+		$this->load->view('Pelanggan/vDetailKatalog', $data);
+		$this->load->view('Pelanggan/Layouts/footer');
+	}
 
 	//CART----------------------------
 	public function add_cart($id_obat)
@@ -31,6 +41,21 @@ class cKatalog extends CI_Controller
 			'name' => $obat->nama_obat,
 			'price' => $obat->harga,
 			'qty' => '1',
+			'stok' => $obat->stok,
+			'picture' => $obat->foto
+		);
+		$this->cart->insert($data);
+		$this->session->set_flashdata('success', 'Obat berhasil dimasukkan ke keranjang!');
+		redirect('Pelanggan/cKatalog');
+	}
+	public function addtocart_detail($id_obat)
+	{
+		$obat = $this->db->query("SELECT * FROM `obat` WHERE id_obat='" . $id_obat . "'")->row();
+		$data = array(
+			'id' => $obat->id_obat,
+			'name' => $obat->nama_obat,
+			'price' => $obat->harga,
+			'qty' => $this->input->post('qty'),
 			'stok' => $obat->stok,
 			'picture' => $obat->foto
 		);

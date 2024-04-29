@@ -21,6 +21,12 @@ class cLogin extends CI_Controller
 					'id_pelanggan' => $data->id_pelanggan
 				);
 				$this->session->set_userdata($array);
+				//cek transaksi maksimal 1 hari
+				$dt_hapus = $this->db->query("SELECT * FROM `transaksi_obat` WHERE tgl_transaksi < '" . date('Y-m-d') . "' AND stat_transaksi='0'")->result();
+				foreach ($dt_hapus as $key => $value) {
+					$this->db->where('id_transaksi', $value->id_transaksi);
+					$this->db->delete('transaksi_obat');
+				}
 				redirect('Pelanggan/cKatalog');
 			} else {
 				$this->session->set_flashdata('error', 'Username dan Password Anda Salah!');

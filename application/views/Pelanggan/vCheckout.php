@@ -110,7 +110,7 @@
 							<li class="active"><a href="<?= base_url('Pelanggan/cKatalog') ?>">Home</a></li>
 							<li><a href="<?= base_url('Pelanggan/cPesananSaya') ?>">Pesanan Saya</a></li>
 
-							<li><a href="<?= base_url('Pelanggan/cChat') ?>">Customer Service</a></li>
+							<li><a href="<?= base_url('Pelanggan/cChat') ?>">Pesan</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -148,11 +148,11 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="breadcrumb__text">
-						<h4>Check Out</h4>
+						<h4>Pengiriman</h4>
 						<div class="breadcrumb__links">
 							<a href="./index.html">Home</a>
-							<a href="./shop.html">Shop</a>
-							<span>Check Out</span>
+							<a href="./shop.html">Belanja</a>
+							<span>Pengiriman</span>
 						</div>
 					</div>
 				</div>
@@ -210,7 +210,7 @@
 								<div class="col-lg-6">
 									<div class="checkout__input">
 										<p>Alamat<span>*</span></p>
-										<input value="<?= $dt_pelanggan->alamat ?>" type="text" readonly>
+										<input name="alamat" type="text" required>
 									</div>
 								</div>
 							</div>
@@ -259,8 +259,8 @@
 						</div>
 						<div class="col-lg-4 col-md-6">
 							<div class="checkout__order">
-								<h4 class="order__title">Your order</h4>
-								<div class="checkout__order__products">Product <span>Total</span></div>
+								<h4 class="order__title">Order Pelanggan</h4>
+								<div class="checkout__order__products">Total <span>Produk</span></div>
 								<ul class="checkout__total__products">
 									<?php
 									foreach ($this->cart->contents() as $key => $value) {
@@ -274,11 +274,32 @@
 								<ul class="checkout__total__all">
 									<li>Subtotal <span>Rp. <?= number_format($this->cart->total()) ?></span></li>
 									<li>Ongkir <span id="ongkir"></span></li>
-									<li>Discount (-) <span id="diskon"></span></li>
+									<li>Diskon (-) <span id="diskon"></span></li>
 									<li>Total <span id="total_bayar"></span></li>
 								</ul>
+								<?php
+								if ($dt_pelanggan->point != '0') {
+								?>
+									<p>Anda memiliki point <strong><?= $dt_pelanggan->point ?></strong>, apakah anda akan menukar dengan Rp. <?= number_format($dt_pelanggan->point) ?>?</p>
+									<div class="checkout__input__checkbox">
+										<label for="acc">
+											Iya!
+											<input type="hidden" name="jmlpoint" value="<?= $dt_pelanggan->point ?>">
+											<input type="checkbox" name="point" id="acc">
+											<span class="checkmark"></span>
+										</label>
 
-								<button type="submit" class="site-btn">PLACE ORDER</button>
+									</div>
+								<?php
+								} else {
+								?>
+									<input type="hidden" name="jmlpoint" value="0">
+								<?php
+								}
+								?>
+
+
+								<button type="submit" class="site-btn">PESAN</button>
 							</div>
 						</div>
 					</div>
@@ -320,7 +341,7 @@
 				var id_provinsi_terpilih = $("option:selected", this).attr("id_provinsi");
 				$.ajax({
 					type: "POST",
-					url: "http://localhost/sumi-butik/pelanggan/ongkir/kota",
+					url: "http://localhost/apotek/pelanggan/ongkir/kota",
 					data: 'id_provinsi=' + id_provinsi_terpilih,
 					success: function(hasil_kota) {
 						$("select[name=kota]").html(hasil_kota);
@@ -331,7 +352,7 @@
 			$("select[name=kota]").on("change", function() {
 				$.ajax({
 					type: "POST",
-					url: "http://localhost/sumi-butik/pelanggan/ongkir/expedisi",
+					url: "http://localhost/apotek/pelanggan/ongkir/expedisi",
 					success: function(hasil_expedisi) {
 						$("select[name=expedisi]").html(hasil_expedisi);
 					}
@@ -349,7 +370,7 @@
 				//alert(total_berat);
 				$.ajax({
 					type: "POST",
-					url: "http://localhost/sumi-butik/pelanggan/ongkir/paket",
+					url: "http://localhost/apotek/pelanggan/ongkir/paket",
 					data: 'expedisi=' + expedisi_terpilih + '&id_kota=' + id_kota_tujuan_terpilih + '&berat=1000',
 					success: function(hasil_paket) {
 						$("select[name=paket]").html(hasil_paket);

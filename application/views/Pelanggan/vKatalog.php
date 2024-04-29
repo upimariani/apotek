@@ -28,7 +28,7 @@ if ($this->session->userdata('success') != '') {
 		<div class="row">
 			<div class="col-lg-12">
 				<ul class="filter__controls">
-					<li class="active" data-filter="*">All</li>
+					<li class="active" data-filter="*">Semua</li>
 					<?php
 					foreach ($kategori as $key => $value) {
 						$kategori = $value->nama_kategori;
@@ -50,12 +50,21 @@ if ($this->session->userdata('success') != '') {
 				<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix <?= $code ?>">
 					<div class="product__item">
 						<div class="product__item__pic set-bg" data-setbg="<?= base_url('asset/foto-obat/' . $value->foto) ?>">
-							<span class="label">New</span>
 
+							<ul class="product__hover">
+								<li><a href="<?= base_url('Pelanggan/cKatalog/detail/' . $value->id_obat) ?>"><img src="<?= base_url('asset/malefashion-master/') ?>img/icon/search.png" alt=""><span>Detail</span></a></li>
+							</ul>
 						</div>
 						<div class="product__item__text">
 							<h6><?= $value->nama_obat ?></h6>
-							<a href="<?= base_url('Pelanggan/cKatalog/add_cart/' . $value->id_obat) ?>" class="add-cart">+ Add To Cart</a>
+							<?php
+							if ($this->session->userdata('id_pelanggan') != '') {
+							?>
+								<a href="<?= base_url('Pelanggan/cKatalog/add_cart/' . $value->id_obat) ?>" class="add-cart">+ Add To Cart</a>
+							<?php
+							}
+							?>
+
 							<!-- <div class="rating">
 							<i class="fa fa-star-o"></i>
 							<i class="fa fa-star-o"></i>
@@ -91,15 +100,14 @@ if ($this->session->userdata('success') != '') {
 				<div class="categories__hot__deal">
 					<img src="img/product-sale.png" alt="">
 					<div class="hot__deal__sticker">
-						<span>Sale Of</span>
+						<span>Potongan Hingga</span>
 						<h5>15%</h5>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-4 offset-lg-1">
 				<div class="categories__deal__countdown">
-					<span>Deal Of The Week</span>
-					<h2>Discounts Member Gold</h2>
+					<h2>Diskon Untuk Member Gold</h2>
 					<div class="categories__deal__countdown__timer" id="countdown">
 						<div class="cd-item">
 							<span>3</span>
@@ -118,7 +126,7 @@ if ($this->session->userdata('success') != '') {
 							<p>Seconds</p>
 						</div>
 					</div>
-					<a href="#" class="primary-btn">Shop now</a>
+					<a href="#" class="primary-btn">Belanja Sekarang</a>
 				</div>
 			</div>
 		</div>

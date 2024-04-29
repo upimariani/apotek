@@ -22,6 +22,17 @@ class cTransaksi extends CI_Controller
 		$this->load->view('Admin/vBelumBayar', $data);
 		$this->load->view('Admin/Layouts/footer');
 	}
+	public function delete($id_transaksi)
+	{
+		$this->db->where('id_transaksi', $id_transaksi);
+		$this->db->delete('transaksi_obat');
+
+		$this->db->where('id_transaksi', $id_transaksi);
+		$this->db->delete('detail_obat');
+
+		$this->session->set_flashdata('success', 'Data Transaksi berhasil dihapus!');
+		redirect('Admin/cTransaksi');
+	}
 	public function konfirmasi()
 	{
 		$data = array(

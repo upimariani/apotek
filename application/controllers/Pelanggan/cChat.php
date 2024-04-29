@@ -15,6 +15,13 @@ class cChat extends CI_Controller
 		$this->form_validation->set_rules('pesan', 'Pesan', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
+			//update status
+			$status = array(
+				'status' => '1'
+			);
+			$this->db->where('id_pelanggan', $this->session->userdata('id_pelanggan'));
+			$this->db->where('chat is null');
+			$this->db->update('chatting', $status);
 			$data = array(
 				'chat' => $this->mChat->chat($this->session->userdata('id_pelanggan'))
 			);

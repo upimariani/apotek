@@ -11,9 +11,9 @@
 					<a href="#"><img src="img/payment.png" alt=""></a>
 				</div>
 			</div>
-			<div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+			<div class="col-lg-8 offset-lg-1 col-md-3 col-sm-6">
 				<div class="footer__widget">
-					<h6>Shopping</h6>
+					<h6>Belanja</h6>
 					<ul>
 						<li><a href="#">Antihistamin</a></li>
 						<li><a href="#">Analgesik</a></li>
@@ -22,28 +22,8 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-lg-2 col-md-3 col-sm-6">
-				<div class="footer__widget">
-					<h6>Shopping</h6>
-					<ul>
-						<li><a href="#">Contact Us</a></li>
-						<li><a href="#">Payment Methods</a></li>
-						<li><a href="#">Delivery</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
-				<div class="footer__widget">
-					<h6>NewLetter</h6>
-					<div class="footer__newslatter">
-						<p>Be the first to know about new arrivals, look books, sales & promos!</p>
-						<form action="#">
-							<input type="text" placeholder="Your email">
-							<button type="submit"><span class="icon_mail_alt"></span></button>
-						</form>
-					</div>
-				</div>
-			</div>
+
+
 		</div>
 		<div class="row">
 			<div class="col-lg-12 text-center">

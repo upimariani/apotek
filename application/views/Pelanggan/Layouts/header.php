@@ -34,20 +34,31 @@
 					<div class="col-lg-6 col-md-7">
 						<div class="header__top__left">
 							<?php
-							$dt_pelanggan = $this->db->query("SELECT * FROM `pelanggan` WHERE id_pelanggan='" . $this->session->userdata('id_pelanggan') . "'")->row();
+							if ($this->session->userdata('id_pelanggan') == '') {
 							?>
-							<p>Selamat Datang <strong><?= $dt_pelanggan->nama_pelanggan ?></strong> Level Member <strong>
-									<?php
-									if ($dt_pelanggan->level_member == '3') {
-										echo 'Clasic';
-									} else if ($dt_pelanggan->level_member == '2') {
-										echo 'Silver';
-									} else {
-										echo 'Gold';
-									}
-									?>
-								</strong>...</p>
-							<p>Point anda sebanyak <strong><?= $dt_pelanggan->point ?></strong></p>
+								<p>Halo Pelanggan! Silahkan melakukan login terlebih dahulu</p>
+							<?php
+							} else {
+							?>
+								<?php
+								$dt_pelanggan = $this->db->query("SELECT * FROM `pelanggan` WHERE id_pelanggan='" . $this->session->userdata('id_pelanggan') . "'")->row();
+								?>
+								<p>Selamat Datang <strong><?= $dt_pelanggan->nama_pelanggan ?></strong> Level Member <strong>
+										<?php
+										if ($dt_pelanggan->level_member == '3') {
+											echo 'Clasic';
+										} else if ($dt_pelanggan->level_member == '2') {
+											echo 'Silver';
+										} else {
+											echo 'Gold';
+										}
+										?>
+									</strong>...</p>
+								<p>Point anda sebanyak <strong><?= $dt_pelanggan->point ?></strong></p>
+							<?php
+							}
+							?>
+
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-5">
@@ -83,9 +94,24 @@
 					<nav class="header__menu mobile-menu">
 						<ul>
 							<li class="active"><a href="<?= base_url('Pelanggan/cKatalog') ?>">Home</a></li>
-							<li><a href="<?= base_url('Pelanggan/cPesananSaya') ?>">Pesanan Saya</a></li>
+							<?php
+							if ($this->session->userdata('id_pelanggan') != ' ') {
+							?>
+								<li><a href="<?= base_url('Pelanggan/cPesananSaya') ?>">Pesanan Saya</a></li>
 
-							<li><a href="<?= base_url('Pelanggan/cChat') ?>">Customer Service</a></li>
+								<li><a href="<?= base_url('Pelanggan/cChat') ?>">Pesan
+										<?php
+										$notif = $this->db->query("SELECT COUNT(id_chatting) as jml FROM `chatting` WHERE id_pelanggan='" . $dt_pelanggan->id_pelanggan . "' AND status='0' AND chat is NULL")->row();
+										if ($notif->jml != '0') {
+										?>
+											<span class="badge badge-success"><?= $notif->jml ?></span>
+										<?php
+										}
+										?></a></li>
+							<?php
+							}
+							?>
+
 						</ul>
 					</nav>
 				</div>

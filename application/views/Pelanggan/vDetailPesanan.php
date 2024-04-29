@@ -168,9 +168,23 @@
 									<hr>
 									<?= form_open_multipart('Pelanggan/cPesananSaya/bayar/' . $detail['pelanggan']->id_transaksi) ?>
 									<label>Upload Bukti Pembayaran</label><br>
-									<small>Pembayaran dapat dilakukan melalui bank BRI Atas Nama <strong>Apotek Agra Medika</strong> dengan No Rekening. <strong>32098-0912-012978</strong></small>
+									<small>Pembayaran dapat dilakukan melalui bank BRI Atas Nama <strong>Apotek Agra Medika</strong> dengan No Rekening. <strong>32098-0912-012978</strong></small><br>
+									<small class="text-danger">Transaksi akan otomatis dibatalkan jika pembayaran tidak dilakukan maksimal 1 hari dari proses transaksi</small>
 									<input type="file" name="gambar" class="form-control" required>
 									<button class="primary-btn mt-2" type="submit">Kirim</button>
+									</form>
+								<?php
+								}
+								?>
+								<?php
+								if ($detail['pelanggan']->stat_transaksi == '4' && $detail['pelanggan']->review == NULL) {
+								?>
+									<hr>
+									<form action="<?= base_url('Pelanggan/cPesananSaya/review/' . $detail['pelanggan']->id_transaksi) ?>" method="POST">
+										<label>Review Produk</label><br>
+										<small>Silahkan pelanggan dapat melakukan review produk</small><br>
+										<textarea name="review" class="form-control" required></textarea>
+										<button class="primary-btn mt-2" type="submit">Kirim</button>
 									</form>
 								<?php
 								}
