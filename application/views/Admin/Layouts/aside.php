@@ -55,24 +55,66 @@
 								<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
 							</svg>
 						</button>
+						<?php
+						//notifikasi
+						$belum_bayar = $this->db->query("SELECT COUNT(id_transaksi) as notif FROM `transaksi_obat` WHERE stat_transaksi='0'")->row();
+						$konfirmasi = $this->db->query("SELECT COUNT(id_transaksi) as notif FROM `transaksi_obat` WHERE stat_transaksi='1'")->row();
+						$proses = $this->db->query("SELECT COUNT(id_transaksi) as notif FROM `transaksi_obat` WHERE stat_transaksi='2'")->row();
+						$kirim = $this->db->query("SELECT COUNT(id_transaksi) as notif FROM `transaksi_obat` WHERE stat_transaksi='3'")->row();
+						?>
 						<template x-if="isPagesMenuOpen">
 							<ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300" x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0" class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900" aria-label="submenu">
 								<li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-									<a class="w-full" href="<?= base_url('Admin/cTransaksi') ?>">Belum Bayar</a>
+									<a class="w-full" href="<?= base_url('Admin/cTransaksi') ?>">Belum Bayar
+										<?php
+										if ($belum_bayar->notif != '0') {
+										?><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+												<?= $belum_bayar->notif ?>
+											</span>
+
+										<?php
+										}
+										?>
+
+									</a>
 								</li>
 								<li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
 									<a class="w-full" href="<?= base_url('Admin/cTransaksi/konfirmasi') ?>">
-										Menunggu Konfirmasi
+										Menunggu Konfirmasi <?php
+															if ($konfirmasi->notif != '0') {
+															?><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+												<?= $konfirmasi->notif ?>
+											</span>
+
+										<?php
+															}
+										?>
 									</a>
 								</li>
 								<li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
 									<a class="w-full" href="<?= base_url('Admin/cTransaksi/proses') ?>">
-										Pesanan Diproses
+										Pesanan Diproses <?php
+															if ($proses->notif != '0') {
+															?><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+												<?= $proses->notif ?>
+											</span>
+
+										<?php
+															}
+										?>
 									</a>
 								</li>
 								<li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
 									<a class="w-full" href="<?= base_url('Admin/cTransaksi/kirim') ?>">
-										Pesanan Dikirim
+										Pesanan Dikirim <?php
+														if ($kirim->notif != '0') {
+														?><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+												<?= $kirim->notif ?>
+											</span>
+
+										<?php
+														}
+										?>
 									</a>
 								</li>
 								<li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
@@ -93,5 +135,6 @@
 				</div>
 			</div>
 		</aside>
-		<!-- Mobile sidebar -->
+		<!-- Mobile sideb
+ar -->
 		<!-- Backdrop -->

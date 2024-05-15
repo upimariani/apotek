@@ -43,7 +43,8 @@
 								<?php
 								$dt_pelanggan = $this->db->query("SELECT * FROM `pelanggan` WHERE id_pelanggan='" . $this->session->userdata('id_pelanggan') . "'")->row();
 								?>
-								<p>Selamat Datang <strong><?= $dt_pelanggan->nama_pelanggan ?></strong> Level Member <strong>
+								<p>Selamat Datang <strong><?= $dt_pelanggan->nama_pelanggan ?></strong> </p>
+								<p><strong>Level Member
 										<?php
 										if ($dt_pelanggan->level_member == '3') {
 											echo 'Clasic';
@@ -53,8 +54,8 @@
 											echo 'Gold';
 										}
 										?>
-									</strong>...</p>
-								<p>Point anda sebanyak <strong><?= $dt_pelanggan->point ?></strong></p>
+									</strong></p>
+								<p>Point : <strong><?= $dt_pelanggan->point ?></strong></p>
 							<?php
 							}
 							?>
@@ -95,7 +96,7 @@
 						<ul>
 							<li class="active"><a href="<?= base_url('Pelanggan/cKatalog') ?>">Home</a></li>
 							<?php
-							if ($this->session->userdata('id_pelanggan') != ' ') {
+							if ($this->session->userdata('id_pelanggan') != '') {
 							?>
 								<li><a href="<?= base_url('Pelanggan/cPesananSaya') ?>">Pesanan Saya</a></li>
 
@@ -108,6 +109,7 @@
 										<?php
 										}
 										?></a></li>
+								<li><a href="<?= base_url('Pelanggan/cProfil') ?>">Profil</a></li>
 							<?php
 							}
 							?>

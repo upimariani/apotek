@@ -39,6 +39,20 @@ class cCheckout extends CI_Controller
 		$this->db->where('id_pelanggan', $this->session->userdata('id_pelanggan'));
 		$this->db->update('pelanggan', $dtu_point);
 
+		//mengurangi stok obat
+		foreach ($this->cart->contents() as $key => $value) {
+			$obat = $this->db->query("SELECT * FROM `obat` WHERE id_obat='" . $value['id'] . "'")->row();
+			$ss = $obat->stok;
+			$qty = $value['qty'];
+			$st = $ss - $qty;
+
+			$dt_stok = array(
+				'stok' => $st
+			);
+			$this->db->where('id_obat', $obat->id_obat);
+			$this->db->update('obat', $dt_stok);
+		}
+
 		//detail obat
 		$id = $this->db->query("SELECT MAX(id_transaksi) as id_transaksi FROM `transaksi_obat`")->row();
 		foreach ($this->cart->contents() as $key => $value) {

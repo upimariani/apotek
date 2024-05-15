@@ -90,9 +90,23 @@ class cDashboard extends CI_Controller
 			'bukti_pembayaran' => '0',
 			'alamat_pengiriman' => 'Langsung',
 			'point_transaksi' => '0',
-			'status_transaksi' => '4'
+			'stat_transaksi' => '4'
 		);
 		$this->db->insert('transaksi_obat', $data);
+
+		//mengurangi stok obat
+		foreach ($this->cart->contents() as $key => $value) {
+			$obat = $this->db->query("SELECT * FROM `obat` WHERE id_obat='" . $value['id'] . "'")->row();
+			$ss = $obat->stok;
+			$qty = $value['qty'];
+			$st = $ss - $qty;
+
+			$dt_stok = array(
+				'stok' => $st
+			);
+			$this->db->where('id_obat', $obat->id_obat);
+			$this->db->update('obat', $dt_stok);
+		}
 
 		//detail obat
 		$id = $this->db->query("SELECT MAX(id_transaksi) as id_transaksi FROM `transaksi_obat`")->row();

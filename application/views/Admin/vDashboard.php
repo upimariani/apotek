@@ -77,8 +77,7 @@
 			</div>
 		</div>
 		<!-- Charts -->
-
-		<div class="grid gap-6 mb-8 md:grid-cols-2">
+		<div class="mx-6 mb-10 overflow-hidden rounded-lg shadow-xs">
 			<form action="<?= base_url('Admin/cDashboard/addtocart') ?>" method="POST">
 				<div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
 					<h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
@@ -119,6 +118,9 @@
 					</button>
 				</div>
 			</form>
+		</div>
+
+		<div class="mx-6 mb-10 overflow-hidden rounded-lg shadow-xs">
 			<div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
 				<h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
 					Keranjang
@@ -180,9 +182,11 @@
 				</table>
 				<a href="<?= base_url('Admin/cDashboard/selesai') ?>" class="w-full mt-4 px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">Pesanan Selesai</a>
 			</div>
-
 		</div>
 		<!-- New Table -->
+		<h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+			Data Pelanggan
+		</h2>
 		<div class="mx-6 mb-10 overflow-hidden rounded-lg shadow-xs">
 			<div class="w-full overflow-x-auto">
 				<table class="w-full whitespace-no-wrap">
@@ -240,7 +244,7 @@
 
 		</div>
 		<h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-			Charts
+			Grafik
 		</h2>
 		<div class="grid gap-6 mb-8 md:grid-cols-2">
 			<div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
@@ -328,5 +332,6 @@
 
 
 	</div>
+
 
 </main>

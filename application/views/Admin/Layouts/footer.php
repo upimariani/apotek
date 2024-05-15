@@ -1,6 +1,16 @@
+
 </div>
 </div>
 <script src="<?= base_url('asset/chart/js_chart.js') ?>"></script>
+<link href="https://cdn.datatables.net/2.0.5/css/dataTables.tailwindcss.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<!-- <script src="https://cdn.tailwindcss.com/"></script> -->
+<script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.5/js/dataTables.tailwindcss.js"></script>
+<!-- <script src="https://cdn.tailwindcss.com/"></script> -->
+<script>
+	new DataTable('#myTable');
+</script>
 <script>
 	<?php
 	$transaksi = $this->db->query("SELECT SUM(total_transaksi) as jml, tgl_transaksi FROM `transaksi_obat` GROUP BY MONTH(tgl_transaksi)")->result();
@@ -38,7 +48,7 @@
 </script>
 <script>
 	<?php
-	$obat = $this->db->query("SELECT SUM(qty) as qty, nama_obat FROM `detail_obat` JOIN obat ON obat.id_obat=detail_obat.id_obat")->result();
+	$obat = $this->db->query("SELECT SUM(qty)*harga as qty, nama_obat FROM `detail_obat` JOIN obat ON obat.id_obat=detail_obat.id_obat")->result();
 	foreach ($obat as $key => $value) {
 		$dt_obat[] = $value->nama_obat;
 		$qty[] = $value->qty;

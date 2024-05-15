@@ -39,12 +39,11 @@
 		?>
 		<div class="w-full overflow-hidden rounded-lg shadow-xs">
 			<div class="w-full overflow-x-auto">
-				<table class="w-full whitespace-no-wrap">
+				<table id="myTable" class="w-full whitespace-wrap">
 					<thead>
 						<tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
 							<th class="px-4 py-3">Nama Obat</th>
 							<th class="px-4 py-3">Deskripsi</th>
-							<th class="px-4 py-3">Keterangan</th>
 							<th class="px-4 py-3">Harga</th>
 							<th class="px-4 py-3">Stok</th>
 							<th class="px-4 py-3">Actions</th>
@@ -67,16 +66,14 @@
 											<p class="text-xs text-gray-600 dark:text-gray-400">
 												<?= $value->nama_kategori ?>
 											</p>
+											<span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+												<?= $value->keterangan ?>
+											</span>
 										</div>
 									</div>
 								</td>
-								<td class="px-4 py-3 text-sm">
+								<td class="px-2 py-3 text-xs">
 									<?= $value->deskripsi_obat ?>
-								</td>
-								<td class="px-4 py-3 text-xs">
-									<span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-										<?= $value->keterangan ?>
-									</span>
 								</td>
 								<td class="px-4 py-3 text-xs">
 									Rp. <?= number_format($value->harga) ?>
@@ -96,6 +93,9 @@
 												<path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
 											</svg>
 										</a>
+
+										<!-- End of modal backdrop -->
+
 									</div>
 								</td>
 							</tr>
@@ -110,7 +110,7 @@
 
 		</div>
 	</div>
+
+
 </main>
 <!-- Modal backdrop. This what you want to place close to the closing body tag -->
-
-<!-- End of modal backdrop -->
