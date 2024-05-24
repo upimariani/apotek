@@ -125,7 +125,15 @@
 							</ul>
 						</template>
 					</li>
-
+					<li class="relative px-6 py-3">
+						<a href="<?= base_url('Admin/cAnalisis') ?>" class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="charts.html">
+							<svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+								<path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+								<path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+							</svg>
+							<span class="ml-4">Grafik Analisis</span>
+						</a>
+					</li>
 				</ul>
 				<div class="px-6 my-6">
 					<a href="<?= base_url('cLogin/logout') ?>" class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
