@@ -48,16 +48,23 @@
 
 						<h3>Rp. <?= number_format($detail->harga) ?></h3>
 						<p><?= $detail->deskripsi_obat ?></p>
-						<form action="<?= base_url('Pelanggan/cKatalog/addtocart_detail/' . $detail->id_obat) ?>" method="POST">
-							<div class="product__details__cart__option">
-								<div class="quantity">
-									<div class="pro-qty">
-										<input type="text" name="qty" value="1">
+						<?php
+						if ($this->session->userdata('id_pelanggan')) {
+						?>
+							<form action="<?= base_url('Pelanggan/cKatalog/addtocart_detail/' . $detail->id_obat) ?>" method="POST">
+								<div class="product__details__cart__option">
+									<div class="quantity">
+										<div class="pro-qty">
+											<input type="number" name="qty" min="1" value="1">
+										</div>
 									</div>
+									<button type="submit" class="primary-btn">add to cart</button>
 								</div>
-								<button type="submit" class="primary-btn">add to cart</button>
-							</div>
-						</form>
+							</form>
+						<?php
+						}
+						?>
+
 					</div>
 				</div>
 			</div>

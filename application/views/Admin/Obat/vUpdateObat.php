@@ -53,7 +53,25 @@
 					<span class="text-gray-700 dark:text-gray-400">
 						Keterangan
 					</span>
-					<input name="keterangan" value="<?= $obat->keterangan ?>" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input" placeholder="Masukkan Keterangan" />
+					<select name="keterangan" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+						<option value="">---Pilih Keterangan---</option>
+						<option value="botol" <?php if ($obat->keterangan == 'botol') {
+													echo 'selected';
+												} ?>>botol</option>
+						<option value="dus" <?php if ($obat->keterangan == 'dus') {
+												echo 'selected';
+											} ?>>dus</option>
+						<option value="tablet" <?php if ($obat->keterangan == 'tablet') {
+													echo 'selected';
+												} ?>>tablet</option>
+						<option value="pcs" <?php if ($obat->keterangan == 'pcs') {
+												echo 'selected';
+											} ?>>pcs</option>
+						<option value="strip" <?php if ($obat->keterangan == 'strip') {
+													echo 'selected';
+												} ?>>strip</option>
+
+					</select>
 					<?= form_error('keterangan', '<span class="text-xs text-red-600 dark:text-gray-400">', '</span>') ?>
 				</label>
 				<label class="block mt-4 text-sm">

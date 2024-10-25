@@ -60,12 +60,12 @@
 
 
 							<h1 class="mb-4 mt-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-								Login
+								Login - Apotek Agra Medika
 							</h1>
 
 							<label class="block text-sm">
 								<span class="text-gray-700 dark:text-gray-400">Username</span>
-								<input name="username" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Jane Doe" />
+								<input name="username" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Username" />
 								<?= form_error('username', '<span class="text-xs text-red-600 dark:text-gray-400">', '</span>') ?>
 
 							</label>

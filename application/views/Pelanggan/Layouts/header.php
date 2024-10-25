@@ -97,8 +97,14 @@
 							<li class="active"><a href="<?= base_url('Pelanggan/cKatalog') ?>">Home</a></li>
 							<?php
 							if ($this->session->userdata('id_pelanggan') != '') {
+								$notif_transaksi = $this->db->query("SELECT COUNT(id_transaksi) as notif FROM `transaksi_obat` WHERE stat_transaksi='0' AND id_pelanggan='" . $this->session->userdata('id_pelanggan') . "'")->row();
 							?>
-								<li><a href="<?= base_url('Pelanggan/cPesananSaya') ?>">Pesanan Saya</a></li>
+
+								<li><a href="<?= base_url('Pelanggan/cPesananSaya') ?>">Pesanan Saya <?php if ($notif_transaksi->notif != '0') {
+																										?>
+											<span class="badge badge-danger"><?= $notif_transaksi->notif ?></span>
+										<?php
+																										} ?></a></li>
 
 								<li><a href="<?= base_url('Pelanggan/cChat') ?>">Pesan
 										<?php

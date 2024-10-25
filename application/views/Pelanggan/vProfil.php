@@ -63,7 +63,7 @@
 							</div>
 							<div class="col-lg-6">
 								<label>Password <span class="text-danger">*</span></label>
-								<input type="text" name="password" placeholder="Email" value="<?= $pelanggan->password ?>">
+								<input type="password" name="password" placeholder="Email" value="<?= $pelanggan->password ?>">
 							</div>
 							<div class="col-lg-12">
 								<button type="submit" class="site-btn">Perbaharui Data Pelanggan</button>

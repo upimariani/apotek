@@ -5,7 +5,7 @@ class mPesananSaya extends CI_Model
 {
 	public function transaksi($id_pelanggan)
 	{
-		return $this->db->query("SELECT * FROM `transaksi_obat` JOIN pelanggan ON transaksi_obat.id_pelanggan=pelanggan.id_pelanggan WHERE pelanggan.id_pelanggan='" . $id_pelanggan . "'")->result();
+		return $this->db->query("SELECT * FROM `transaksi_obat` JOIN pelanggan ON transaksi_obat.id_pelanggan=pelanggan.id_pelanggan WHERE pelanggan.id_pelanggan='" . $id_pelanggan . "' ORDER BY id_transaksi DESC")->result();
 	}
 	public function detail_pesanan($id_transaksi)
 	{

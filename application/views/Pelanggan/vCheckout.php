@@ -210,7 +210,7 @@
 								<div class="col-lg-6">
 									<div class="checkout__input">
 										<p>Alamat<span>*</span></p>
-										<input name="alamat" type="text" required>
+										<input name="alamat" value="<?= $dt_pelanggan->alamat ?>" type="text" required>
 									</div>
 								</div>
 							</div>

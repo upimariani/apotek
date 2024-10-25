@@ -1,5 +1,5 @@
 <main class="h-full overflow-y-auto">
-	<div class="container px-6 mx-auto grid">
+	<div class="container px-6 py-6 mx-auto grid">
 		<h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
 			Dashboard Admin
 		</h2>
@@ -119,70 +119,77 @@
 				</div>
 			</form>
 		</div>
-
-		<div class="mx-6 mb-10 overflow-hidden rounded-lg shadow-xs">
-			<div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-				<h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-					Keranjang
-				</h4>
-				<table class="w-full whitespace-no-wrap">
-					<thead>
-						<tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-							<th class="px-4 py-3">Nama Obat</th>
-							<th class="px-4 py-3">Quantity</th>
-							<th class="px-4 py-3">Harga</th>
-							<th class="px-4 py-3">Subtotal</th>
-							<th class="px-4 py-3">Actions</th>
-						</tr>
-					</thead>
-					<tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-						<?php
-						foreach ($this->cart->contents() as $key => $item) {
-						?>
-							<tr class="text-gray-700 dark:text-gray-400">
-
-								<td class="px-4 py-3 text-sm">
-									<?= $item['name'] ?>
-								</td>
-								<td class="px-4 py-3 text-xs">
-									<span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-										<?= $item['qty'] ?>
-									</span>
-								</td>
-								<td class="px-4 py-3 text-xs">
-									Rp. <?= number_format($item['price']) ?>
-								</td>
-								<td class="px-4 py-3 text-sm">
-									Rp. <?= number_format($item['price'] * $item['qty']) ?>
-								</td>
-								<td class="px-4 py-3">
-									<div class="flex items-center space-x-4 text-sm">
-
-										<a href="<?= base_url('Admin/cDashboard/delete/' . $item['rowid']) ?>" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
-											<svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-												<path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-											</svg>
-										</a>
-									</div>
-								</td>
+		<?php
+		if ($this->cart->contents()) {
+		?>
+			<div class="mx-6 mb-10 overflow-hidden rounded-lg shadow-xs">
+				<div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+					<h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+						Keranjang
+					</h4>
+					<table class="w-full whitespace-no-wrap">
+						<thead>
+							<tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+								<th class="px-4 py-3">Nama Obat</th>
+								<th class="px-4 py-3">Quantity</th>
+								<th class="px-4 py-3">Harga</th>
+								<th class="px-4 py-3">Subtotal</th>
+								<th class="px-4 py-3">Actions</th>
 							</tr>
-						<?php
-						}
-						?>
-						<tr>
-							<td></td>
-							<td></td>
+						</thead>
+						<tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+							<?php
+							foreach ($this->cart->contents() as $key => $item) {
+							?>
+								<tr class="text-gray-700 dark:text-gray-400">
 
-							<td>Total: </td>
-							<td>Rp. <?= number_format($this->cart->total()) ?></td>
-							<td></td>
-						</tr>
-					</tbody>
+									<td class="px-4 py-3 text-sm">
+										<?= $item['name'] ?>
+									</td>
+									<td class="px-4 py-3 text-xs">
+										<span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+											<?= $item['qty'] ?>
+										</span>
+									</td>
+									<td class="px-4 py-3 text-xs">
+										Rp. <?= number_format($item['price']) ?>
+									</td>
+									<td class="px-4 py-3 text-sm">
+										Rp. <?= number_format($item['price'] * $item['qty']) ?>
+									</td>
+									<td class="px-4 py-3">
+										<div class="flex items-center space-x-4 text-sm">
 
-				</table>
-				<a href="<?= base_url('Admin/cDashboard/selesai') ?>" class="w-full mt-4 px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">Pesanan Selesai</a>
+											<a href="<?= base_url('Admin/cDashboard/delete/' . $item['rowid']) ?>" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
+												<svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+													<path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+												</svg>
+											</a>
+										</div>
+									</td>
+								</tr>
+							<?php
+							}
+							?>
+							<tr>
+								<td></td>
+								<td></td>
+
+								<td>Total: </td>
+								<td>Rp. <?= number_format($this->cart->total()) ?></td>
+								<td></td>
+							</tr>
+						</tbody>
+
+					</table>
+					<a href="<?= base_url('Admin/cDashboard/selesai') ?>" class="w-full mt-4 px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">Pesanan Selesai</a>
+				</div>
 			</div>
-		</div>
+		<?php
+		}
+		?>
+
+
 		<!-- New Table -->
 		<h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
 			Data Pelanggan
@@ -243,7 +250,7 @@
 			</div>
 
 		</div>
-		<h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+		<!-- <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
 			Grafik
 		</h2>
 		<div class="mx-6 mb-10 overflow-hidden rounded-lg shadow-xs">
@@ -267,7 +274,7 @@
 				</div>
 			</div>
 
-		</div>
+		</div> -->
 		<h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
 			Chatting Pelanggan
 		</h2>
@@ -343,3 +350,4 @@
 
 
 </main>
+<hr>
