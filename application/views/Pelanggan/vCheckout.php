@@ -394,10 +394,10 @@
 				// //pelanggan istimewa
 				var level = $("#level_member").val();
 				if (level == '2') {
-					var disc = 10 / 100 * parseInt(total_bayar);
+					var disc = Math.round(10 / 100 * parseInt(total_bayar), 0);
 					var tot_disc = parseInt(total_bayar) - (10 / 100 * parseInt(total_bayar));
 				} else if (level == '1') {
-					var disc = 15 / 100 * parseInt(total_bayar);
+					var disc = Math.round(15 / 100 * parseInt(total_bayar, 0));
 					var tot_disc = parseInt(total_bayar) - (15 / 100 * parseInt(total_bayar));
 				} else {
 					var disc = 0;

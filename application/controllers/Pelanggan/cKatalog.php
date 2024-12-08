@@ -33,13 +33,20 @@ class cKatalog extends CI_Controller
 	}
 
 	//CART----------------------------
-	public function add_cart($id_obat)
+	public function add_cart($id_obat, $disc)
 	{
+
 		$obat = $this->db->query("SELECT * FROM `obat` WHERE id_obat='" . $id_obat . "'")->row();
+		if ($disc == 1) {
+			$hrg = $obat->harga - ((3 / 100) * $obat->harga);
+		} else {
+			$hrg = $obat->harga;
+		}
+
 		$data = array(
 			'id' => $obat->id_obat,
 			'name' => $obat->nama_obat,
-			'price' => $obat->harga,
+			'price' => $hrg,
 			'qty' => '1',
 			'stok' => $obat->stok,
 			'picture' => $obat->foto

@@ -16,6 +16,12 @@ class cCheckout extends CI_Controller
 
 		$switch_point = $this->input->post('point');
 		if ($switch_point == 'on') {
+			$dtu_point = array(
+				'point' => '0',
+				'level_member' => '3'
+			);
+			$this->db->where('id_pelanggan', $this->session->userdata('id_pelanggan'));
+			$this->db->update('pelanggan', $dtu_point);
 			$sp_total = $this->input->post('total_bayar') - $this->input->post('jmlpoint');
 		} else {
 			$sp_total = $this->input->post('total_bayar');
@@ -32,12 +38,7 @@ class cCheckout extends CI_Controller
 		);
 		$this->db->insert('transaksi_obat', $data);
 
-		$dtu_point = array(
-			'point' => '0',
-			'level_member' => '3'
-		);
-		$this->db->where('id_pelanggan', $this->session->userdata('id_pelanggan'));
-		$this->db->update('pelanggan', $dtu_point);
+
 
 		//mengurangi stok obat
 		foreach ($this->cart->contents() as $key => $value) {
